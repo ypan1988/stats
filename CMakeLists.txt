@@ -138,3 +138,5 @@ export(EXPORT stats-targets FILE ${CMAKE_CURRENT_BINARY_DIR}/StatsTargets.cmake 
 
 # Register package in user's package registry
 export(PACKAGE Stats)
+
+add_subdirectory(examples)

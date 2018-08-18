@@ -1,9 +1,5 @@
-//
-// Created by Yi Pan (Institute of Cancer and Genomic Sciences) on 27/07/2018.
-//
-
-#ifndef STATSLABS_STATS_MATHLIB_H
-#define STATSLABS_STATS_MATHLIB_H
+#ifndef STATSLABS_STATS_MATHLIB_H_
+#define STATSLABS_STATS_MATHLIB_H_
 
 /* Random Number Generators */
 
@@ -224,5 +220,4 @@ using ::bessel_j_ex;
 using ::bessel_k_ex;
 using ::bessel_y_ex;
 
-
-#endif //STATSLABS_STATS_MATHLIB_H
+#endif // STATSLABS_STATS_MATHLIB_H_
