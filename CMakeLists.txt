@@ -13,7 +13,26 @@ if("${CMAKE_BUILD_TYPE}" STREQUAL "")
     set(CMAKE_BUILD_TYPE "Release")
 endif()
 
-find_package(Rmath 1.0.0 REQUIRED)
+# Download and unpack rmath at configure time
+configure_file(${CMAKE_SOURCE_DIR}/cmake/Rmath-CMakeLists.txt.in ${CMAKE_BINARY_DIR}/rmath-download/CMakeLists.txt)
+execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
+        RESULT_VARIABLE result
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/rmath-download )
+if(result)
+    message(FATAL_ERROR "CMake step for rmath failed: ${result}")
+endif()
+execute_process(COMMAND ${CMAKE_COMMAND} --build .
+        RESULT_VARIABLE result
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/rmath-download )
+if(result)
+    message(FATAL_ERROR "Build step for rmath failed: ${result}")
+endif()
+
+# Add rmath directly to our build. This defines Rmath::Rmath
+add_subdirectory(${CMAKE_BINARY_DIR}/rmath-src
+        ${CMAKE_BINARY_DIR}/rmath-build
+        EXCLUDE_FROM_ALL)
+
 find_package(Matrix 0.3.0 REQUIRED)
 
 # Doxygen Build
@@ -60,7 +79,7 @@ target_link_libraries(main
         PUBLIC
         Statslabs::Matrix
         PRIVATE
-        Rmath::Rmath
+        rmath
         )
 
 
@@ -83,7 +102,7 @@ target_link_libraries(stats PUBLIC ${MKL_LINKER_LIBS})
 target_link_libraries(stats
         PUBLIC
         Statslabs::Matrix
-        Rmath::Rmath
+        rmath
         )
 
 ##################################################
