@@ -22,11 +22,66 @@
 
 _SLAB_BEGIN_NAMESPACE
 
-Matrix<double, 1> rnorm(std::size_t n, double mu, double sigma) {
+Matrix<double, 1> runif(std::size_t n, double min = 0.0, double max = 1.0) {
   Matrix<double, 1> res(n);
+  if (n == 0)
+    return res;
+
+#ifdef _SLAB_USE_R_RANDOM
+  GetRNGstate();
+#endif
+
+  for (std::size_t i = 0; i != n; ++i) {
+    res(i) = runif(min, max);
+  }
+
+#ifdef _SLAB_USE_R_RANDOM
+  PutRNGstate();
+#endif
+
+  return res;
+}
+
+Matrix<double, 1> runif(std::size_t n, const Matrix<double, 1> &min,
+                        const Matrix<double, 1> &max) {
+  Matrix<double, 1> res(n);
+  if (n == 0)
+    return res;
+
+  std::size_t n_min = min.size();
+  std::size_t n_max = max.size();
+
+#ifdef _SLAB_USE_R_RANDOM
+  GetRNGstate();
+#endif
+
+  for (std::size_t i = 0; i != n; ++i) {
+    res(i) = runif(min(i % n_min), max(i % n_max));
+  }
+
+#ifdef _SLAB_USE_R_RANDOM
+  PutRNGstate();
+#endif
+
+  return res;
+}
+
+Matrix<double, 1> rnorm(std::size_t n, double mu = 0.0, double sigma = 1.0) {
+  Matrix<double, 1> res(n);
+  if (n == 0)
+    return res;
+
+#ifdef _SLAB_USE_R_RANDOM
+  GetRNGstate();
+#endif
+
   for (std::size_t i = 0; i != n; ++i) {
     res(i) = rnorm(mu, sigma);
   }
+
+#ifdef _SLAB_USE_R_RANDOM
+  PutRNGstate();
+#endif
 
   return res;
 }
@@ -34,9 +89,23 @@ Matrix<double, 1> rnorm(std::size_t n, double mu, double sigma) {
 Matrix<double, 1> rnorm(std::size_t n, const Matrix<double, 1> &mu,
                         const Matrix<double, 1> &sigma) {
   Matrix<double, 1> res(n);
+  if (n == 0)
+    return res;
+
+  std::size_t n_mu = mu.size();
+  std::size_t n_sigma = sigma.size();
+
+#ifdef _SLAB_USE_R_RANDOM
+  GetRNGstate();
+#endif
+
   for (std::size_t i = 0; i != n; ++i) {
-    res(i) = rnorm(mu(i % mu.size()), sigma(i % sigma.size()));
+    res(i) = rnorm(mu(i % n_mu), sigma(i % n_sigma));
   }
+
+#ifdef _SLAB_USE_R_RANDOM
+  PutRNGstate();
+#endif
 
   return res;
 }
