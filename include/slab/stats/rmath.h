@@ -1,21 +1,23 @@
-#ifndef STATSLABS_STATS_MATHLIB_H_
-#define STATSLABS_STATS_MATHLIB_H_
+#ifndef SLAB_STATS_MATHLIB_H_
+#define SLAB_STATS_MATHLIB_H_
+
+_SLAB_BEGIN_NAMESPACE
 
 /* Random Number Generators */
 
-using ::norm_rand;
-using ::unif_rand;
 using ::exp_rand;
-using ::set_seed;
 using ::get_seed;
+using ::norm_rand;
+using ::set_seed;
+using ::unif_rand;
 
 /* Normal Distribution */
 
 using ::dnorm;
 using ::pnorm;
+using ::pnorm_both; /* both tails */
 using ::qnorm;
 using ::rnorm;
-using ::pnorm_both;  /* both tails */
 
 /* Uniform Distribution */
 
@@ -31,9 +33,9 @@ using ::pgamma;
 using ::qgamma;
 using ::rgamma;
 
-using ::log1pmx;
-using ::log1pexp;
 using ::lgamma1p;
+using ::log1pexp;
+using ::log1pmx;
 using ::logspace_add;
 using ::logspace_sub;
 using ::logspace_sum;
@@ -82,8 +84,8 @@ using ::rt;
 
 /* Binomial Distribution */
 
-using ::dbinom_raw;
 using ::dbinom;
+using ::dbinom_raw;
 using ::pbinom;
 using ::qbinom;
 using ::rbinom;
@@ -134,8 +136,8 @@ using ::rnbinom_mu;
 
 /* Poisson Distribution */
 
-using ::dpois_raw;
 using ::dpois;
+using ::dpois_raw;
 using ::ppois;
 using ::qpois;
 using ::rpois;
@@ -193,15 +195,15 @@ using ::qsignrank;
 using ::rsignrank;
 
 /* Gamma and Related Functions */
+using ::digamma;
+using ::dpsifn;
 using ::gammafn;
 using ::lgammafn;
 using ::lgammafn_sign;
-using ::dpsifn;
-using ::psigamma;
-using ::digamma;
-using ::trigamma;
-using ::tetragamma;
 using ::pentagamma;
+using ::psigamma;
+using ::tetragamma;
+using ::trigamma;
 
 using ::beta;
 using ::lbeta;
@@ -212,12 +214,14 @@ using ::lchoose;
 /* Bessel Functions */
 
 using ::bessel_i;
-using ::bessel_j;
-using ::bessel_k;
-using ::bessel_y;
 using ::bessel_i_ex;
+using ::bessel_j;
 using ::bessel_j_ex;
+using ::bessel_k;
 using ::bessel_k_ex;
+using ::bessel_y;
 using ::bessel_y_ex;
 
-#endif // STATSLABS_STATS_MATHLIB_H_
+_SLAB_END_NAMESPACE
+
+#endif // SLAB_STATS_MATHLIB_H_

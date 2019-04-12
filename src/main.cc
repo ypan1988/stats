@@ -1,12 +1,10 @@
 #include <iostream>
 
-#include "slab/stats.h"
 #include "slab/matrix.h"
-
-using namespace std;
+#include "slab/stats.h"
 
 int main() {
-  cout << "M_PI = " << M_PI << endl;
+  std::cout << slab::rnorm(10, 0, 1) << std::endl;
 
   return 0;
 }
