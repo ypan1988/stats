@@ -1,8 +1,5 @@
 //
-// Created by Yi Pan (Institute of Cancer and Genomic Sciences) on 27/07/2018.
-//
-//
-// Copyright 2018 The Statslabs Authors.
+// Copyright 2019 The Statslabs Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
