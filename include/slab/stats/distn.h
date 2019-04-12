@@ -20,6 +20,10 @@
 #ifndef SLAB_STATS_DISTN_H_
 #define SLAB_STATS_DISTN_H_
 
+#if defined(_SLAB_USE_R_RANDOM)
+#include <R_ext/Random.h>
+#endif
+
 _SLAB_BEGIN_NAMESPACE
 
 Matrix<double, 1> runif(std::size_t n, double min = 0.0, double max = 1.0) {
