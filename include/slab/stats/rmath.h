@@ -3,6 +3,8 @@
 
 _SLAB_BEGIN_NAMESPACE
 
+#ifndef Rcpp_Rmath_h
+
 /* Random Number Generators */
 
 using ::exp_rand;
@@ -15,9 +17,9 @@ using ::unif_rand;
 
 using ::dnorm;
 using ::pnorm;
-using ::pnorm_both; /* both tails */
 using ::qnorm;
 using ::rnorm;
+using ::pnorm_both; /* both tails */
 
 /* Uniform Distribution */
 
@@ -221,6 +223,25 @@ using ::bessel_k;
 using ::bessel_k_ex;
 using ::bessel_y;
 using ::bessel_y_ex;
+
+#else
+
+/* Normal Distribution */
+
+using R::dnorm;
+using R::pnorm;
+using R::qnorm;
+using R::rnorm;
+using R::pnorm_both; /* both tails */
+
+/* Uniform Distribution */
+
+using R::dunif;
+using R::punif;
+using R::qunif;
+using R::runif;
+
+#endif
 
 _SLAB_END_NAMESPACE
 
